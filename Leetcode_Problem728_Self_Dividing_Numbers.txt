@@ -1,0 +1,27 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+int self_dividing_number(int n)
+{
+    int temp = n;
+    while(temp)
+    {
+        if(!(temp%10) || n%(temp%10))
+            return 0;
+        temp /= 10;
+    }
+    return 1;
+}
+
+int* selfDividingNumbers(int left, int right, int* returnSize){
+    int* ans = (int*)malloc((right)*sizeof(int));
+    *returnSize = 0;
+    while(left<=right)
+    {
+        if(self_dividing_number(left))
+            ans[(*returnSize)++] = left;
+        left++;
+    }
+    return ans;
+}
